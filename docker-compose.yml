@@ -4,7 +4,7 @@ services:
     container_name: docker-panel
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "3100:3000"
     volumes:
       # 挂载 Docker socket 以管理容器
       - /var/run/docker.sock:/var/run/docker.sock
