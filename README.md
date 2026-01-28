@@ -44,7 +44,7 @@ npm run dev
 
 **首次访问时注册的用户将自动成为管理员**。之后只有管理员可以创建新用户。
 
-1. 访问 `http://localhost:3000/register`
+1. 访问 `http://localhost:3100/register`
 2. 注册第一个账户（自动获得管理员权限）
 3. 使用该账户登录管理 Docker
 
@@ -181,7 +181,7 @@ docker compose up -d
 docker build -t docker-panel .
 docker run -d \
   --name docker-panel \
-  -p 3000:3000 \
+  -p 3100:3000 \
   -v /var/run/docker.sock:/var/run/docker.sock \
   --env-file .env.local \
   docker-panel
@@ -226,7 +226,7 @@ server {
     ssl_certificate_key /path/to/key.pem;
 
     location / {
-        proxy_pass http://127.0.0.1:3000;
+        proxy_pass http://127.0.0.1:3100;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
