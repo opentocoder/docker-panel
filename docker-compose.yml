@@ -1,0 +1,19 @@
+services:
+  docker-panel:
+    build: .
+    container_name: docker-panel
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      # 挂载 Docker socket 以管理容器
+      - /var/run/docker.sock:/var/run/docker.sock
+      # 持久化数据库
+      - ./data:/app/data
+    env_file:
+      - .env.local
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3000/api/docker/ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

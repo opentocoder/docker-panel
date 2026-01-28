@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // 启用 standalone 输出，用于 Docker 部署
+  output: 'standalone',
   // Configure webpack for server-side native modules
   webpack: (config, { isServer }) => {
     if (isServer) {

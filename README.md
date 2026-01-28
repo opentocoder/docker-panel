@@ -163,9 +163,36 @@ DOCKER_CERT_PATH=/path/to/certs
 - `GET /api/system/info` - Docker 信息
 - `GET /api/system/stats` - 统计数据
 
+## 系统要求
+
+| 软件 | 版本 | 说明 |
+|------|------|------|
+| Node.js | 20+ | 运行应用 |
+| Docker | 20+ | 被管理对象 |
+
 ## 生产部署
 
-### 1. 构建
+### 方式一：Docker 部署（推荐）
+
+```bash
+# 使用 docker-compose
+docker compose up -d
+
+# 或手动构建运行
+docker build -t docker-panel .
+docker run -d \
+  --name docker-panel \
+  -p 3000:3000 \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  --env-file .env.local \
+  docker-panel
+```
+
+镜像大小约 **217MB**，启动时间 **< 100ms**。
+
+### 方式二：Node.js 直接部署
+
+#### 1. 构建
 
 ```bash
 npm run build
