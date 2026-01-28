@@ -71,7 +71,6 @@ nano .env.local
 ```bash
 # 自动生成随机密钥
 echo "JWT_SECRET=$(openssl rand -base64 32)" > .env.local
-echo "DOCKER_HOST=unix:///var/run/docker.sock" >> .env.local
 ```
 
 #### 方式三：手动创建
